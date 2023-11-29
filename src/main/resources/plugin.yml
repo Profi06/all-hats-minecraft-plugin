@@ -1,0 +1,8 @@
+name: AllHats
+version: '${project.version}'
+main: org.profi06.allhats.AllHats
+api-version: '1.20'
+commands:
+  hatset:
+    description: Use your held item as a hat
+    usage: /hatset
