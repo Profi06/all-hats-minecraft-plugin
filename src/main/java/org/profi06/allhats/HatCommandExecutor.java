@@ -1,18 +1,14 @@
 package org.profi06.allhats;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.ComponentBuilder;
-import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.GameMode;
-import org.bukkit.World;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.TextDisplay;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.jetbrains.annotations.NotNull;
@@ -39,9 +35,8 @@ public class HatCommandExecutor implements CommandExecutor {
                     dropHelmet(csPlayer);
                 }
                 csPlayerInv.setHelmet(item.asOne());
-                if (!csPlayer.getGameMode().equals(GameMode.CREATIVE)) {
-                    csPlayerInv.setItemInMainHand(item.subtract());
-                }
+                csPlayer.playSound(csPlayer.getEyeLocation(), Sound.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.PLAYERS, 1, 1);
+                item.subtract();
                 commandSender.sendMessage(Component.text("[")
                         .append(Component.text("All Hats", PLUGIN_COLOR))
                         .append(Component.text("] Successfully set hat!")));
